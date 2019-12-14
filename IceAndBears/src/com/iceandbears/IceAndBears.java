@@ -1,5 +1,6 @@
 package com.iceandbears;
-package java.util.ArrayList;
+
+import java.util.ArrayList;
 
 public class IceAndBears {
 
