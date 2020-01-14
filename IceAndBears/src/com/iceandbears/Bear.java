@@ -13,25 +13,27 @@ public class Bear {
 		return side;
 	}
 
-	public void setSide(String s) {
-		if (s.equals("left") || s.equals("right")){
-			side = s;
+	public void setSide(String newSide) {
+		if ((newSide.equals("left")) || (newSide.equals("right"))){
+			side = newSide;
 		}
 	}
 
 	public void setState(String s) {
 		if (s.equals("standing")) {
 			state = s;
-		} else if (s.eqauls("digging")) {
+		} else if (s.equals("digging")) {
 			state = s;
 		} else if (s.equals("fallen")) {
+			state = s;
+		} else if (s.equals("throwing")) {
 			state = s;
 		} else {
 			state = "";
 		}
 	}
 
-	public void getState() {
+	public String getState() {
 		return state;
 	}
 }

@@ -10,24 +10,40 @@ public class IceAndBears {
 	private ArrayList<Ice> iceBlocks = new ArrayList<Ice>();
 
 	public IceAndBears() {
-		for (int i = 0; i < 3; i++){
-			iceBlocks.get(i).setType(i);
-		}
+		iceBlocks.add(new Ice("base"));
+		iceBlocks.add(new Ice("left"));
+		iceBlocks.add(new Ice("right"));
 	}
 
 	public boolean bearDigs(String side) {
-		if (iceBlock.get(0).canDig(side)){
-			iceBlock.get(0).clear();
-			iceBlock.add(new IceBlock());
+		if (side.equals("up")) {
+			if (iceBlocks.get(0).canDig("left") && (iceBlocks.get(0).canDig("right"))) {
+		
+				
 
-			if (iceBlock.get(0).getType().equals("log")) {
-				stove.addLog();
+				if (iceBlocks.get(0).getType().equals("log")) {
+					stove.addLog();
+					System.out.println("New Log!");
+				}
+
+				iceBlocks.remove(0);
+				iceBlocks.add(new Ice());
+
+				return true;
 			}
 
-			return true;
-		}
+			return false;			
+		} else {
+			if (iceBlocks.get(0).canDig(side)) {
+		
+				iceBlocks.remove(0);
+				iceBlocks.add(new Ice());
 
-		return false;
+				return true;
+			}
+
+			return false;			
+		}
 	}
 
 	public ArrayList<String> getIceTypes() {

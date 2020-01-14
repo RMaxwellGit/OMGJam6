@@ -10,8 +10,9 @@
 	</target>
 
 	<target name="runme" depends="compile">
-		<java classpath="bin/" classname="View">
+		<java classname="com.gui.View" classpath="bin/" fork="true">
 			<jvmarg line="--module-path &quot;C:\Program Files\JavaFX\openjfx-13.0.1_windows-x64_bin-sdk\javafx-sdk-13.0.1\lib&quot; --add-modules javafx.controls"/>
 		</java>
 	</target>
+
 </project>

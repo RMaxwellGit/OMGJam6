@@ -7,7 +7,7 @@ public class Ice {
 
 	public Ice () {
 		Random r = new Random();
-		int t = r.nextInt(3);
+		int t = r.nextInt(4);
 		type = setType(t);
 	}
 
@@ -25,6 +25,8 @@ public class Ice {
 				return "right";//rock on right
 			case 3:
 				return "log";//log in middle
+			default:
+				return null;
 		}
 	}
 
@@ -33,9 +35,10 @@ public class Ice {
 	}
 
 	public boolean canDig(String side) {
-		if (type.equals("base") || side.equals(type)) {
-			return true;
-		}
-		return false;
+		if ((side.equals("base")) || (side.equals("log"))) return true;
+		
+		if (side.equals(type)) return false;
+
+		return true;
 	}
 }
