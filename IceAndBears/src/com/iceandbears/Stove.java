@@ -1,20 +1,26 @@
 package com.iceandbears;
 
 public class Stove {
-	private double time;
-	private final double max = 20;
-	private final double logVal = 5;
+	private int time;
+	private final int max = 9;
+	private final int logVal = 5;
 
 	public Stove() {
 		time = max;
 	}
 
-	public void decrease(int rate) {
-		time -= rate;
+	public void decrease() {
+		time -= 1;
+		System.out.println(time);
 	}
 
 	public void addLog() {
 		time += logVal;
+		if (time > max) time = max;
+	}
+
+	public int getState() {
+		return time/3;
 	}
 
 	public boolean isOut() {

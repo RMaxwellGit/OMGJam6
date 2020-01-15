@@ -67,7 +67,7 @@ public class View extends Application{
 		stove.setSmooth(true);
 		stove.setPreserveRatio(true);
 		stove.setFitWidth(windowLength/3);
-		setStove("Full");
+		setStove(3);
 
 		//put the bears in the bear box and position them
 		HBox bearBox = new HBox(bearLeft, stove, bearRight);
@@ -121,6 +121,8 @@ public class View extends Application{
 		    	animateLeftBear();
 		    	animateRightBear();
 		    	iceUpdate = game.bearDigs("up");
+		    	game.getStove().addLog();
+	            setStove(game.getStove().getState());
 		    }
 
 		    if (iceUpdate) {
@@ -133,6 +135,8 @@ public class View extends Application{
 			 @Override
 	        public void run() {
 	            System.out.println("pong");//DEV CONTINUES HERE DEV CONTINUES HERE WRITE THE SHIT TO MAKE THE FIRE GO BYE!
+	            setStove(game.getStove().getState());
+	            game.getStove().decrease();
 	        }
 		}, 0, 1000);
 
@@ -223,16 +227,21 @@ public class View extends Application{
     	rightTimer.start();
     }
 
-    private void setStove(String state) {
-    	if (state.equals("Full")) {
-    		stove.setImage(stoveFull);
-    	} else if (state.equals("Mid")) {
-    		stove.setImage(stoveMid);
-    	} else if (state.equals("Low")) {
-    		stove.setImage(stoveLow);
-    	} else if (state.equals("Done")) {
-    		stove.setImage(stoveDone);
-    	}
+    private void setStove(int state) {
+    	switch(state) {
+	    	case 0:
+	    		stove.setImage(stoveDone);
+	    		break;
+	    	case 1:
+	    		stove.setImage(stoveLow);
+	    		break;
+	    	case 2:
+	    		stove.setImage(stoveMid);
+	    		break;
+	    	case 3:
+	    		stove.setImage(stoveFull);
+	    		break;
+	    }
     }
 
 }

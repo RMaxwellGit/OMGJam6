@@ -55,4 +55,8 @@ public class IceAndBears {
 
 		return temp;
 	}
+
+	public Stove getStove() {
+		return stove;
+	}
 }
