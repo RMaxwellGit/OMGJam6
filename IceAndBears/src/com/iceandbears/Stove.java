@@ -11,7 +11,6 @@ public class Stove {
 
 	public void decrease() {
 		time -= 1;
-		System.out.println(time);
 	}
 
 	public void addLog() {

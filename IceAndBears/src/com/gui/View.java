@@ -5,6 +5,9 @@ import javafx.geometry.Rectangle2D;
 import javafx.geometry.Pos;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.animation.Timeline;
+import javafx.animation.KeyFrame;
+import javafx.util.Duration;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -48,7 +51,8 @@ public class View extends Application{
 	private AnimationTimer rightTimer;
 	private long leftFrames = 0;
 	private long rightFrames = 0;
-	private Timer timer = new Timer();
+	private Timeline timer;
+	private Stage globalStage;
 
 	@Override
 	public void start(Stage stage) {
@@ -131,21 +135,21 @@ public class View extends Application{
 		});
 
 		//start the timer for the stove
-		timer.scheduleAtFixedRate(new TimerTask() {
-			 @Override
-	        public void run() {
-	            System.out.println("pong");//DEV CONTINUES HERE DEV CONTINUES HERE WRITE THE SHIT TO MAKE THE FIRE GO BYE!
+		timer = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
 	            setStove(game.getStove().getState());
 	            game.getStove().decrease();
-	        }
-		}, 0, 1000);
+		}));
+		timer.setCycleCount(Animation.INDEFINITE);
+    	timer.play();
 
 		//set the timer to stop when the stage is closed
 		stage.setOnCloseRequest(event -> {
-		    timer.cancel();
+		    timer.stop();
 		});
 
         stage.setScene(scene);
+
+        globalStage = stage;
 
         stage.show();
     }
@@ -229,6 +233,9 @@ public class View extends Application{
 
     private void setStove(int state) {
     	switch(state) {
+    		case -1:
+    			globalStage.close();
+    			break;
 	    	case 0:
 	    		stove.setImage(stoveDone);
 	    		break;

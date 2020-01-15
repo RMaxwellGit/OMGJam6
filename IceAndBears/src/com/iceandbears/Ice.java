@@ -7,7 +7,7 @@ public class Ice {
 
 	public Ice () {
 		Random r = new Random();
-		int t = r.nextInt(4);
+		int t = r.nextInt(10);
 		type = setType(t);
 	}
 
@@ -18,12 +18,18 @@ public class Ice {
 	private String setType(int t) {
 		switch (t) {
 			case 0:
-				return "base";//no rock
 			case 1:
-				return "left";//rock on left
 			case 2:
-				return "right";//rock on right
+				return "base";//no rock
 			case 3:
+			case 4:
+			case 5:
+				return "left";//rock on left
+			case 6:
+			case 7:
+			case 8:
+				return "right";//rock on right
+			case 9:
 				return "log";//log in middle
 			default:
 				return null;

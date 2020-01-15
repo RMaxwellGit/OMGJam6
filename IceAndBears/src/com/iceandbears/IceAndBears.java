@@ -23,7 +23,6 @@ public class IceAndBears {
 
 				if (iceBlocks.get(0).getType().equals("log")) {
 					stove.addLog();
-					System.out.println("New Log!");
 				}
 
 				iceBlocks.remove(0);
